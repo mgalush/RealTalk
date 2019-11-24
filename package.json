@@ -1,0 +1,25 @@
+{
+  "name": "realtalk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd src && node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgalush/RealTalk.git"
+  },
+  "author": "mgalush",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mgalush/RealTalk/issues"
+  },
+  "homepage": "https://github.com/mgalush/RealTalk#readme"
+}

@@ -1,0 +1,56 @@
+body {
+    font-family: Courier, sans-serif;
+}
+
+.header {
+    text-align: center;
+    padding: 2vh 0;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.buttons a {
+    text-decoration: none;
+}
+
+ul {
+    padding: 0px;
+}
+
+li {
+    list-style: none;
+}
+
+.buttons {
+    display: flex;
+    height: 30vh;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+}
+
+.mainButton {
+    font: inherit;
+    font-size: 20px;
+    text-transform: uppercase;
+    width: 200px;
+    height: 30px;
+    margin: 10px;
+}
+
+.topicContainer {
+    display: flex;
+    margin: 2em 10em;
+}
+
+.topic {
+    display: inline-flex;
+    text-align: center;
+
+}
+
+.previousTopicButton, .nextTopicButton {
+    display: inline-flex;
+}
