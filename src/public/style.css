@@ -2,13 +2,13 @@ body {
     font-family: Courier, sans-serif;
 }
 
-.header {
+.headerContainer {
     text-align: center;
     padding: 2vh 0;
 }
 
-h1 {
-    font-size: 50px;
+.header {
+    font-size: 5rem;
 }
 
 .buttons a {
@@ -33,7 +33,7 @@ li {
 
 .mainButton {
     font: inherit;
-    font-size: 20px;
+    font-size: 1rem;
     text-transform: uppercase;
     width: 200px;
     height: 30px;
@@ -42,17 +42,32 @@ li {
 
 .topicContainer {
     display: flex;
-    margin: 2em 25em;
+    justify-content: center;
+}
+
+.topicContent {
+    display: inline-flex;
+    text-align: center;
 }
 
 .topic {
-    display: inline-flex;
-    text-align: center;
-
+    width: 100%;
+    max-width: 600px;
 }
 
-#previousTopicButton, #nextTopicButton {
-    display: inline-flex;
-    border: none;
-    font-size: 30px;
+.navButton {
+    display: flex;
+    align-items:  center;
 }
+
+.navButton a {
+    font-size: 1.5rem;
+    color: black;
+}
+/* 
+@media (max-width: 800px) {
+
+.topic {
+    width: 300px;
+}
+} */
