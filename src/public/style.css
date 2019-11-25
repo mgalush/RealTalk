@@ -42,7 +42,7 @@ li {
 
 .topicContainer {
     display: flex;
-    margin: 2em 10em;
+    margin: 2em 25em;
 }
 
 .topic {
@@ -51,6 +51,8 @@ li {
 
 }
 
-.previousTopicButton, .nextTopicButton {
+#previousTopicButton, #nextTopicButton {
     display: inline-flex;
+    border: none;
+    font-size: 30px;
 }
