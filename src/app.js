@@ -55,7 +55,7 @@ app.get('/friends/:topicNumber([1-9]\\d{0,})', function(req, res){
 });
 
 app.get('/family', function(req, res){
-    collection.aggregation({}, {cursor: {}})
+    res.render('family');
 });
 
 app.get('/relationship', function(req, res){
