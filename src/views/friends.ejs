@@ -1,19 +1,23 @@
 <%- include('partials/header.ejs'); %>
 
-    <div class="topicContainer">
+<div class="topicContainer">
+  <% if (back) { %>  
+    <a href="<%= back %>">
         <button type="submit" id="previousTopicButton">
-                <i class="fas fa-arrow-circle-left"></i>
-            </button>
+        <i class="fas fa-arrow-circle-left"></i>
+        </button>
+    </a>
+  <% } %>
 
-    <div class="topic">
+  <div class="topic">
+    <h3><%= topic.topic %></h3>
+  </div>
 
-        <h3><%= topic.topic %></h3>
-
-    </div>
-
+  <a href="<%= next %>">
     <button type="submit" id="nextTopicButton">
-            <i class="fas fa-arrow-circle-right"></i>
+      <i class="fas fa-arrow-circle-right"></i>
     </button>
-    </div>
+  </a>
+</div>
 
-    <%- include('partials/footer.ejs'); %>
+<%- include('partials/footer.ejs'); %>

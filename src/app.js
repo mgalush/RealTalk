@@ -33,23 +33,34 @@ app.get('/', function(req, res){
     res.render('index');
 });
 
-app.get('/friends', function(req, res){
-    collection.findOne({}, function(error, topic){
-        topic.topic = topic['﻿topic'];
-        console.log(topic);
-        res.render('friends', {topic: topic});
-    });
+// url for /friends/<some number greater than zero>
+app.get('/friends/:topicNumber([1-9]\\d{0,})', function(req, res){
     
+    // get the number of this page
+    const topicNumber = parseInt(req.params.topicNumber);
+
+    // calculage back and number href links
+    const viewModel = {};
+    viewModel.back = topicNumber - 1;
+    viewModel.next = topicNumber + 1;
+
+    // query mongo for a topic, skipping by the number specified in the url
+    collection.findOne({}, {skip: topicNumber-1}, function(error, topic) {
+
+        viewModel.topic = topic;
+
+        // render the friends ejs template and pass in variables
+        res.render('friends', viewModel);
+    })
 });
 
 app.get('/family', function(req, res){
-    res.render('family');
+    collection.aggregation({}, {cursor: {}})
 });
 
 app.get('/relationship', function(req, res){
     res.render('relationship');
 });
-
 
 
 const server = app.listen(3000, function(){
