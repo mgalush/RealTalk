@@ -62,6 +62,10 @@ app.get('/relationship', function(req, res){
     res.render('relationship');
 });
 
+// return 404 for all non matching routes
+app.get('*', function(req, res) {
+    res.send('404 bitch', 404);
+})
 
 const server = app.listen(3000, function(){
     console.log('Express server is listening');
