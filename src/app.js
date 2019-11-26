@@ -33,9 +33,8 @@ MongoClient.connect(url, { useUnifiedTopology: true }, function(err, c) {
 });
 
 app.get('/', function(req, res){
-
     collection.distinct('category', function(error, categories) {
-        res.render('index', {categories: categories});
+        res.render('index', {categories: categories.sort()});
     });
 });
 
