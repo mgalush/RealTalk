@@ -28,10 +28,6 @@ MongoClient.connect(url, { useUnifiedTopology: true }, function(err, client) {
   const db = client.db(dbName);
 
   collection = db.collection(dbName);
-
-//   collection.drop();
- 
-//   client.close();
 });
 app.get('/', function(req, res){
     res.render('index');
@@ -43,7 +39,7 @@ app.get('/friends/:topicNumber([1-9]\\d{0,})', function(req, res){
     // get the number of this page
     const topicNumber = parseInt(req.params.topicNumber);
 
-    // calculage back and number href links
+    // calculate back and number href links
     const viewModel = {};
     viewModel.back = topicNumber - 1;
     viewModel.next = topicNumber + 1;
@@ -58,16 +54,60 @@ app.get('/friends/:topicNumber([1-9]\\d{0,})', function(req, res){
         viewModel.topic = topic;
 
         // render the friends ejs template and pass in variables
-        res.render('friends', viewModel);
+        res.render('category', viewModel);
     });
 });
 
-app.get('/family', function(req, res){
-    res.render('family');
+
+// url for /family/<some number greater than zero>
+app.get('/family/:topicNumber([1-9]\\d{0,})', function(req, res){
+    
+    // get the number of this page
+    const topicNumber = parseInt(req.params.topicNumber);
+
+    // calculate back and number href links
+    const viewModel = {};
+    viewModel.back = topicNumber - 1;
+    viewModel.next = topicNumber + 1;
+
+    // query mongo for a topic, skipping by the number specified in the url
+    collection.findOne({}, {skip: topicNumber-1}, function(error, topic) {
+        if(!topic) {
+            send404(req, res);
+            return;
+        }
+
+        viewModel.topic = topic;
+
+        // render the friends ejs template and pass in variables
+        res.render('category', viewModel);
+    });
 });
 
-app.get('/relationship', function(req, res){
-    res.render('relationship');
+
+// url for /relationship/<some number greater than zero>
+app.get('/relationship/:topicNumber([1-9]\\d{0,})', function(req, res){
+    
+    // get the number of this page
+    const topicNumber = parseInt(req.params.topicNumber);
+
+    // calculate back and number href links
+    const viewModel = {};
+    viewModel.back = topicNumber - 1;
+    viewModel.next = topicNumber + 1;
+
+    // query mongo for a topic, skipping by the number specified in the url
+    collection.findOne({}, {skip: topicNumber-1}, function(error, topic) {
+        if(!topic) {
+            send404(req, res);
+            return;
+        }
+
+        viewModel.topic = topic;
+
+        // render the friends ejs template and pass in variables
+        res.render('category', viewModel);
+    });
 });
 
 // return 404 for all non matching routes
