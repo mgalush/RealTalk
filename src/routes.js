@@ -5,18 +5,18 @@ function send404(req, res) {
 };
 
 module.exports = (app) => {
-    app.get('/', function(req, res){
-        database().distinct('category', function(error, categories) {
+    app.get('/', (req, res) => {
+        database().distinct('category', (error, categories) => {
             res.render('index', {categories: categories.sort()});
         });
     });
     
-    app.get("/topic/:category", function (req, res) {
+    app.get("/topic/:category", (req, res) => {
         res.redirect(`${req.url}/1`)
     });
     
     // url for /<some category>/<some number greater than zero>
-    app.get('/topic/:category/:topicNumber([1-9]\\d{0,})', function(req, res){
+    app.get('/topic/:category/:topicNumber([1-9]\\d{0,})', (req, res) => {
     
         // get the category
         const category = req.params.category;
@@ -30,7 +30,7 @@ module.exports = (app) => {
         viewModel.next = topicNumber + 1;
     
         // query mongo for a topic, skipping by the number specified in the url
-        database().findOne({category: category}, {skip: topicNumber-1}, function(error, topic) {
+        database().findOne({category: category}, {skip: topicNumber-1}, (error, topic) => {
             if(!topic) {
                 send404(req, res);
                 return;
