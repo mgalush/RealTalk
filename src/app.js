@@ -19,11 +19,13 @@ const url = 'mongodb://localhost:27017';
  
 // Database Name
 const dbName = 'RealTalk';
+let client;
 let collection;
 // Use connect method to connect to the server
-MongoClient.connect(url, { useUnifiedTopology: true }, function(err, client) {
+MongoClient.connect(url, { useUnifiedTopology: true }, function(err, c) {
   assert.equal(null, err);
   console.log("Connected successfully to mongodb server");
+  client = c;
  
   const db = client.db(dbName);
 
@@ -68,3 +70,23 @@ app.get('*', send404);
 const server = app.listen(3000, function(){
     console.log('Express server is listening');
 });
+
+function exitHandler() {
+    if (client) client.close(); console.log('closing mongo client');
+    if (server) server.close(function() {
+        console.log('express server closed');
+    });
+}
+
+//do something when app is closing
+process.on('exit', exitHandler);
+
+//catches ctrl+c event
+process.on('SIGINT', exitHandler);
+
+// catches "kill pid" (for example: nodemon restart)
+process.on('SIGUSR1', exitHandler);
+process.on('SIGUSR2', exitHandler);
+
+//catches uncaught exceptions
+process.on('uncaughtException', exitHandler);
