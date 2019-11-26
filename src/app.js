@@ -33,8 +33,11 @@ app.get('/', function(req, res){
     res.render('index');
 });
 
-// url for /friends/<some number greater than zero>
-app.get('/friends/:topicNumber([1-9]\\d{0,})', function(req, res){
+// url for /<some category>/<some number greater than zero>
+app.get('/topic/:category/:topicNumber([1-9]\\d{0,})', function(req, res){
+
+    // get the category
+    const category = req.params.category;
     
     // get the number of this page
     const topicNumber = parseInt(req.params.topicNumber);
@@ -45,59 +48,7 @@ app.get('/friends/:topicNumber([1-9]\\d{0,})', function(req, res){
     viewModel.next = topicNumber + 1;
 
     // query mongo for a topic, skipping by the number specified in the url
-    collection.findOne({}, {skip: topicNumber-1}, function(error, topic) {
-        if(!topic) {
-            send404(req, res);
-            return;
-        }
-
-        viewModel.topic = topic;
-
-        // render the friends ejs template and pass in variables
-        res.render('category', viewModel);
-    });
-});
-
-
-// url for /family/<some number greater than zero>
-app.get('/family/:topicNumber([1-9]\\d{0,})', function(req, res){
-    
-    // get the number of this page
-    const topicNumber = parseInt(req.params.topicNumber);
-
-    // calculate back and number href links
-    const viewModel = {};
-    viewModel.back = topicNumber - 1;
-    viewModel.next = topicNumber + 1;
-
-    // query mongo for a topic, skipping by the number specified in the url
-    collection.findOne({}, {skip: topicNumber-1}, function(error, topic) {
-        if(!topic) {
-            send404(req, res);
-            return;
-        }
-
-        viewModel.topic = topic;
-
-        // render the friends ejs template and pass in variables
-        res.render('category', viewModel);
-    });
-});
-
-
-// url for /relationship/<some number greater than zero>
-app.get('/relationship/:topicNumber([1-9]\\d{0,})', function(req, res){
-    
-    // get the number of this page
-    const topicNumber = parseInt(req.params.topicNumber);
-
-    // calculate back and number href links
-    const viewModel = {};
-    viewModel.back = topicNumber - 1;
-    viewModel.next = topicNumber + 1;
-
-    // query mongo for a topic, skipping by the number specified in the url
-    collection.findOne({}, {skip: topicNumber-1}, function(error, topic) {
+    collection.findOne({category: category}, {skip: topicNumber-1}, function(error, topic) {
         if(!topic) {
             send404(req, res);
             return;
