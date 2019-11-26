@@ -33,7 +33,10 @@ MongoClient.connect(url, { useUnifiedTopology: true }, function(err, c) {
 });
 
 app.get('/', function(req, res){
-    res.render('index');
+
+    collection.distinct('category', function(error, categories) {
+        res.render('index', {categories: categories});
+    });
 });
 
 // url for /<some category>/<some number greater than zero>

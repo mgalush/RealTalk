@@ -2,21 +2,13 @@
 
 <div class="buttons">
     <ul>
+        <% for (category of categories) { %>
         <li>
-            <a href="/topic/friends/1">
-                <button class="mainButton" type="submit">Friends</button>
+            <a href="/topic/<%= category %>/1">
+                <button class="mainButton" type="submit"><%= category %></button>
             </a>
         </li>
-        <li>
-            <a href="/topic/family/1">
-            <button class="mainButton" type="button">Family</button>
-        </a>
-    </li>
-        <li>
-            <a href="/topic/relationship/1">
-                <button class="mainButton" type="button">Relationship</button>
-            </a>
-        </li>
+        <% } %>
     </ul>
 </div>
 
