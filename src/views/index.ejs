@@ -4,8 +4,10 @@
     <ul>
         <% for (category of categories) { %>
         <li>
-            <a href="/topic/<%= category %>/1">
-                <button class="mainButton" type="submit"><%= category %></button>
+            <a href="/topic/<%= category %>">
+                <button class="mainButton" type="submit">
+                    <%= category %>
+                </button>
             </a>
         </li>
         <% } %>

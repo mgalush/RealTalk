@@ -38,6 +38,10 @@ app.get('/', function(req, res){
     });
 });
 
+app.get("/topic/:category", function (req, res) {
+    res.redirect(`${req.url}/1`)
+});
+
 // url for /<some category>/<some number greater than zero>
 app.get('/topic/:category/:topicNumber([1-9]\\d{0,})', function(req, res){
 
