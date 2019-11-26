@@ -29,6 +29,7 @@ MongoClient.connect(url, { useUnifiedTopology: true }, function(err, client) {
 
   collection = db.collection(dbName);
 });
+
 app.get('/', function(req, res){
     res.render('index');
 });

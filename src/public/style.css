@@ -11,6 +11,10 @@ body {
     font-size: 5rem;
 }
 
+h3 {
+
+}
+
 .buttons a {
     text-decoration: none;
 }
@@ -40,34 +44,40 @@ li {
     margin: 10px;
 }
 
-.topicContainer {
+.container {
     display: flex;
     justify-content: center;
 }
 
-.topicContent {
+.content {
     display: inline-flex;
     text-align: center;
 }
 
+.topicContainer {
+    width: 600px;
+    margin: 0 1rem;
+}
+
 .topic {
-    width: 100%;
-    max-width: 600px;
+    margin-block-start: unset;
+    margin-block-end: unset;
 }
 
 .navButton {
     display: flex;
     align-items:  center;
+    height: 2rem;
 }
 
 .navButton a {
     font-size: 1.5rem;
     color: black;
 }
-/* 
+
 @media (max-width: 800px) {
 
 .topic {
     width: 300px;
 }
-} */
+}

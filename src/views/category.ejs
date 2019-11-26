@@ -1,24 +1,24 @@
 <%- include('partials/header.ejs'); %>
 
-<div class="topicContainer">
-   <div class="topicContent">
+<div class="container">
+    <div class="content">
         <% if (back) { %>
-            <div class="navButton">
-                <a href="<%= back %>">
-                    <i class="fas fa-arrow-circle-left"></i>
-                </a>
-            </div>
-            <% } %>
-        
-            <div class="topic">
-                <h3><%= topic.topic %></h3>
-            </div>
-            <div class="navButton">
-                <a href="<%= next %>">
-                    <i class="fas fa-arrow-circle-right"></i>
-                </a>
-            </div>
-   </div>
+        <div class="navButton">
+            <a href="<%= back %>">
+                <i class="fas fa-arrow-circle-left"></i>
+            </a>
+        </div>
+        <% } %>
+
+        <div class="topicContainer">
+            <h3 class="topic"><%= topic.topic %></h3>
+        </div>
+        <div class="navButton">
+            <a href="<%= next %>">
+                <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
 </div>
 
-    <%- include('partials/footer.ejs'); %>
+<%- include('partials/footer.ejs'); %>
