@@ -11,7 +11,7 @@ const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
 const send404 = function(req, res) {
-    res.status(404).send('404 bitch');
+    res.status(404).render('404');
 };
 
 // Connection URL
