@@ -2,9 +2,9 @@
 
 <div class="container">
     <div class="content">
-        <% if (back) { %>
+        <% if (previous) { %>
         <div class="navButton">
-            <a href="<%= back %>">
+            <a href="<%= previous %>">
                 <i class="fas fa-arrow-circle-left"></i>
             </a>
         </div>
@@ -13,11 +13,13 @@
         <div class="topicContainer">
             <h3 class="topic"><%= topic.topic %></h3>
         </div>
+        <% if (next) { %>
         <div class="navButton">
             <a href="<%= next %>">
                 <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
+        <% } %>
     </div>
 </div>
 

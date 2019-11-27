@@ -16,31 +16,39 @@ module.exports = (app) => {
     });
     
     // url for /<some category>/<some number greater than zero>
-    app.get('/topic/:category/:topicNumber([1-9]\\d{0,})', (req, res) => {
+    app.get('/topic/:category/:pageNumber([1-9]\\d{0,})', async (req, res) => {
     
         // get the category
         const category = req.params.category;
         
         // get the number of this page
-        const topicNumber = parseInt(req.params.topicNumber);
+        const pageNumber = parseInt(req.params.pageNumber);
     
-        // calculate back and number href links
-        const viewModel = {};
-        viewModel.back = topicNumber - 1;
-        viewModel.next = topicNumber + 1;
-    
-        // query mongo for a topic, skipping by the number specified in the url
-        database().findOne({category: category}, {skip: topicNumber-1}, (error, topic) => {
-            if(!topic) {
-                send404(req, res);
-                return;
-            }
-    
-            viewModel.topic = topic;
-    
-            // render the friends ejs template and pass in variables
-            res.render('category', viewModel);
-        });
+        // query mongo for a topic and the one after it, skipping by the number specified in the url
+        const query = {
+            category: category
+        };
+        const options = {
+            skip: pageNumber - 1,
+            limit: 2
+        }
+        const cursor = database().find(query, options);
+
+        // 404 if we don't have any topics
+        if (!await cursor.count()) {
+            send404(req, res);
+            return;
+        }
+
+        // calculate back and next href links
+        const viewModel = {
+            topic: await cursor.next(),
+            previous: pageNumber - 1,
+            next: await cursor.hasNext() ? pageNumber + 1 : 0,
+        };
+
+        // render the category ejs template and pass in view model
+        res.render('category', viewModel);
     });
     
     // return 404 for all non matching routes
