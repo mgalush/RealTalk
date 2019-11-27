@@ -26,7 +26,6 @@ li {
 
 .buttons {
     display: flex;
-    height: 30vh;
     justify-content: center;
     text-align: center;
     margin: auto;
@@ -36,8 +35,8 @@ li {
     font: inherit;
     font-size: 1rem;
     text-transform: uppercase;
-    width: 200px;
-    height: 30px;
+    width: 12rem;
+    height: 2rem;
     margin: 10px;
 }
 
@@ -72,9 +71,5 @@ li {
     color: black;
 }
 
-@media (max-width: 800px) {
-
-    .topic {
-        width: 300px;
-    }
+@media only screen and (max-width: 600px) {
 }
