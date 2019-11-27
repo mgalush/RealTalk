@@ -15,6 +15,13 @@ li {
     list-style: none;
 }
 
+h3 {
+    margin-block-start: unset;
+    margin-block-end: unset;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
 .headerContainer {
     text-align: center;
     padding: 2vh 0;
@@ -46,34 +53,30 @@ li {
 }
 
 .content {
-    display: inline-flex;
+    display: flex;
+    justify-content: space-between;
     text-align: center;
+    width: 100%;
+    max-width: 600px;
 }
 
 .topicContainer {
-    width: 600px;
     margin: 0 1rem;
+    width: 100%;
 }
 
 .topic {
-    margin-block-start: unset;
-    margin-block-end: unset;
+    font-size: 1.2rem;
 }
 
 .navButton {
     display: flex;
     align-items:  center;
+    width: 2rem;
     height: 2rem;
 }
 
 .navButton a {
     font-size: 1.5rem;
     color: black;
-}
-
-@media only screen and (max-width: 600px) {
-    .topicContainer {
-        width: auto;
-        margin: 0;
-    }
 }
