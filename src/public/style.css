@@ -72,4 +72,8 @@ li {
 }
 
 @media only screen and (max-width: 600px) {
+    .topicContainer {
+        width: auto;
+        margin: 0;
+    }
 }
