@@ -69,6 +69,10 @@ h3 {
     font-size: 1.2rem;
 }
 
+.topic::first-letter {
+    text-transform: uppercase;
+}
+
 .navButton {
     display: flex;
     align-items:  center;
